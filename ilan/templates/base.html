@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" ></script>
+
+
+    <script src="https://kit.fontawesome.com/e24507d923.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
+
+    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <title>Hemen | {% block title %} {% endblock %}</title>
+    <style>
+     
+      .main{
+        width: 100%;
+        height: 400px;
+        background-image: url(/static/images/background2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .search-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-left: none;
+    flex: 1;
+    outline: none;
+    margin-right: 10px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #45a049;
+}
+
+.map-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.map-button:hover {
+    background-color: #45a049;
+}
+
+      ul li a{
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 14px;
+        font-family: Roboto, sans-serif;
+        color: black;
+        padding: 10px;
+      }
+
+      .container{
+        width: 100%;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+        
+      }
+     .cart{
+      width: 400px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      justify-content: space-evenly;
+      margin-bottom: 10px;
+     } 
+     .image{
+      width: 100%;
+      
+     }
+     .image img{
+      width: 400px;
+      height: 250px;
+     }
+     .content{
+      width: 100%;
+     }
+     .info-title {
+            font-weight: bold;
+        }
+        .info-value {
+            color: green;
+        }
+        .more-info {
+            cursor: pointer;
+            color: green;
+        }
+        .category-container {
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .category-item {
+            margin-right: 10px;
+            white-space: nowrap;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .category-item a {
+            color: #28a745;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+  <div style="width: 100%; padding: 10px; height: 50px; display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
+    <div class="logo" style="display: flex; align-items: center;">
+      <a class="navbar-brand" href="/">
+        <img src="../static/images/logo.jpg" alt="Emlakjet" height="50px" ><span style="color: red; font-weight: bold; font-size: 20px;">EMEN</span>
+      </a> 
+    </div>
+    <ul style="display: flex; align-items: center; list-style-type: none;">
+      {% if current_user.is_authenticated %}
+      <li><a href="/ilan-ekle">ilan ekle</a></li>
+      {% endif %}
+      <li><a href="/hakkimizda">Hakkımızda</a></li>
+      <li><a href="/iletisim">İletişim</a></li>
+    </ul>
+    <ul style="display: flex; align-items: center; list-style-type: none;">
+      {% if current_user.id == 1 %}
+      <li>
+        <a href="/admin-page">admin sayfası</a>
+      </li>
+      {% endif %}
+      {% if current_user.is_authenticated %}
+     
+      <li>
+       <a href="/profile/{{current_user.id}}">Profil</a>
+      </li>
+      <li>
+        
+        <a href="/logout"  style="background-color: rgb(177, 0, 0); border-radius: 5px; color: white; "> <i class="fa-solid fa-user"></i> &nbsp; Çıkış yap</a>
+      </li>
+      {% else %}
+      <li>
+        <a href="/login" style="background-color: green; border-radius: 5px; color: white; ">Giriş yap</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% for message in get_flashed_messages() %}
+
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 5px;">
+      <strong>{{ message }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  
+  </div>
+  {% endfor %}
+      {% block body %}
+
+
+      {% endblock %}
+
+      
+      
+    <script src="{{ url_for( 'static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/all.min.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/jquery.js') }}"></script>
+
+    <script src="{{ url_for( 'static', filename='js/myScript.js') }}"></script>
+
+</body>
+</html>

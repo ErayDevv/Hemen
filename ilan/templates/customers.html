@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Kullanıcılar {% endblock %}
+
+{% block body %}
+<div class="container mt-5 offset-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Kullanıcı Adı</th>
+                <th scope="col">E-posta</th>
+                <th scope="col">Katılım Tarihi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.username }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.date_joined }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

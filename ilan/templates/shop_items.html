@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} İlan İşlemleri {% endblock %}
+
+{% block body %}
+<div class="container mt-5 offset-3">
+
+    {% if items | length < 1 %}
+        <h3>ilan yok</h3>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Başlık</th>
+                    <th scope="col">Fiyat</th>
+                    <th scope="col">Resim</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.product_name }}</td>
+                        <td>{{ item.current_price }}</td>
+                        <td>
+                            <img src="{{ item.product_picture }}" alt="Ürün Resmi" class="img-thumbnail" style="height: 50px; width: 50px;">
+                        </td>
+                        <td>
+                            <a href="/update-item/{{ item.id }}" class="btn btn-warning btn-sm mb-1">Güncelle</a>
+                            <a href="/delete-item/{{ item.id }}" class="btn btn-danger btn-sm">Sil</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

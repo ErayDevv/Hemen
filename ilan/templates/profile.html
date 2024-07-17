@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Profil {% endblock %}
+
+{% block body %}
+
+<div class="container my-5 d-flex align-items-center justify-content-center" style="height: 500px;">
+    <div class="card p-4" style="width: 720px;">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="card-title">Kullanıcı Adı: {{ customer.username }}</h3>
+                <h3 class="card-text">Email: {{ customer.email }}</h3>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-end">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="/change-password/{{ customer.id }}" class="btn btn-primary">Şifre Değiştir</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

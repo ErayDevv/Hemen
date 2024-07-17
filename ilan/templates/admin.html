@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Admin Sayfası {% endblock %}
+
+{% block body %}
+<div class="container mt-5 offset-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Kullanıcılar</th>
+                <th scope="col">İlanlar</th>
+                <th scope="col">İlan Ekle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="/customers" class="btn btn-primary">Kullanıcılar</a></td>
+                <td><a href="/shop-items" class="btn btn-primary">İlanlar</a></td>
+                <td><a href="/ilan-ekle" class="btn btn-success">İlan Ekle</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

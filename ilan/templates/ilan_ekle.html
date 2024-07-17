@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} İlan Ekle {% endblock %}
+
+{% block body %}
+<div class="container mt-5 offset-2">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <table style="background-color: rgb(197, 59, 59); color:  white;" class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Başlık</th>
+                    <th scope="col">Fiyat</th>
+                    <th scope="col">Resim</th>
+                    <th scope="col">Ekle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ form.product_name(class="form-control") }}</td>
+                    <td>{{ form.current_price(class="form-control") }}</td>
+                    <td>{{ form.product_picture(class="form-control-file") }}</td>
+                    <td>{{ form.add_product(class="btn btn-warning") }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+{% endblock %}

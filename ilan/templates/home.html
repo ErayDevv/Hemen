@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} Anasayfa {% endblock %}
+
+
+{% block body %}
+
+
+
+<div class="main">
+
+    <div class="search-container">
+        <select class="dropdown">
+            <option value="konut">Konut</option>
+            <option value="konut">Araç</option>
+            <option value="konut">Spor</option>
+            <option value="konut">Müzik</option>
+        </select>
+        <form  role="search" action="/search"  method="POST">
+        <input type="text" name="search" type="search"  class="search-input" placeholder="İl, ilçe, mahalle, site, okul, metro...">
+        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Ara</button>
+        <button class="map-button">Tüm İlanlar</button>
+        </form>
+    </div>
+
+</div>
+<div class="mt-4" style="margin-left: 80px; margin-bottom: 20px;">
+    <div class="category-container">
+        <div class="category-item">
+            <a href="#">Satılık Konut</a>
+        </div>
+        <div class="category-item">
+            <a href="#">Kiralık Konut</a>
+        </div>
+        <div class="category-item">
+            <a href="#">Satılık Araç</a>
+        </div>
+        <div class="category-item">
+            <a href="#">Kiralık Araç</a>
+        </div>
+        <div class="category-item">
+            <a href="#">Satılık Arsa</a>
+        </div>
+        <div class="category-item">
+            <a href="#">Kiralık Arsa</a>
+        </div>
+        <div class="category-item">
+            <a href="#">Satılık İşyeri</a>
+        </div>
+        <div class="category-item">
+            <a href="#">Kiralık İşyeri</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% for item in items %}
+    <div class="cart">
+        <div class="image">
+            <a href="/views/{{item.id}}"><img src="{{ item.product_picture }}" alt="İlan Resmi" class="product-image"></a>
+        </div>
+        <div class="content">
+            <a href="/views/{{item.id}}"><h5>{{ item.product_name }}</h5></a>
+            <h5 class="price">{{ item.current_price }} TL</h5>
+            {% if current_user.id == 1 %}
+            <span style="display: flex; align-items: center; justify-content: center;">
+                <a class="nav-link action-link edit-link" href="/shop-items" style="background-color: rgb(134, 134, 32);  color: white; padding: 10px; border-radius: 10px; margin-right: 5px;">Düzenle</a>
+                <a class="nav-link action-link delete-link" href="/shop-items" style="background-color: red; color: white; padding: 10px; border-radius: 10px;">Sil</a>
+            </span>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

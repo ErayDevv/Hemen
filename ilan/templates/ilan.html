@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %} Anasayfa {% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body" style="display: flex;">
+            <div style="flex: 1; padding-right: 20px;">
+                <img src=".{{ ilan.product_picture }}" class="product-image" style="width: 100%; height: auto;">
+            </div>
+            
+            <div style="flex: 1;">
+                <h5 class="card-title">{{ ilan.product_name }}</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="info-title">İlan Numarası</p>
+                        <p class="info-value">{{ilan.id}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">İlan Oluşturma Tarihi</p>
+                        <p>{{ilan.date_added}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">İlan Güncelleme Tarihi</p>
+                        <p>14 Temmuz 2024</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Türü</p>
+                        <p>Araç</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Kategorisi</p>
+                        <p>Satılık Araç</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Tipi</p>
+                        <p>Sedan</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Marka</p>
+                        <p>Bmw</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Model</p>
+                        <p>M5 Competition</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Motor Hacmi</p>
+                        <p> 4001 - 4500 cm3</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Motor Gücü</p>
+                        <p> 601 HP ve üzeri</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">KM</p>
+                        <p> 11.500</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Vites</p>
+                        <p>Otomatik</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Yakıt</p>
+                        <p>Benzin</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Çekiş</p>
+                        <p>4WD sürekli</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="info-title">Renk</p>
+                        <p>Gri</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+{% endblock %}
